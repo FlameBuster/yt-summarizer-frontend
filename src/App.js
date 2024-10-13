@@ -19,9 +19,12 @@ function App() {
     setSummary("");
 
     try {
-      const response = await axios.post("http://localhost:5001/summarize", {
-        url: videoURL,
-      });
+      const response = await axios.post(
+        "yt-summarizer-backend-production.up.railway.app/summarize",
+        {
+          url: videoURL,
+        }
+      );
       setSummary(response.data.summary);
     } catch (error) {
       console.error(error);
