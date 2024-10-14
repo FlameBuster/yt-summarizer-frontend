@@ -20,7 +20,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "yt-summarizer-backend-production.up.railway.app/summarize",
+        "https://yt-summarizer-backend-production.up.railway.app:8080/summarize",
         {
           url: videoURL,
         }
