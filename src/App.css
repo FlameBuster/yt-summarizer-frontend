@@ -2,18 +2,18 @@
 
 /* Color Palette Variables */
 :root {
-  --primary-color: #798645;        /* Dark olive green */
-  --secondary-color: #626F47;      /* Olive green */
-  --background-color: #FEFAE0;     /* Light cream */
-  --card-background-color: #F2EED7;/* Very light beige */
-  --text-color: #333333;           /* Dark gray for text */
-  --placeholder-color: #999999;    /* Gray for placeholders */
-  --error-color: #e74c3c;          /* Red for errors */
+  --primary-color: #798645; /* Dark olive green */
+  --secondary-color: #626f47; /* Olive green */
+  --background-color: #fefae0; /* Light cream */
+  --card-background-color: #f2eed7; /* Very light beige */
+  --text-color: #333333; /* Dark gray for text */
+  --placeholder-color: #999999; /* Gray for placeholders */
+  --error-color: #e74c3c; /* Red for errors */
 }
 
 /* Global Styles */
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: var(--background-color);
   margin: 0;
   padding: 0;
