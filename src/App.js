@@ -1,14 +1,15 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import he from 'he';
-import LoadingBar from 'react-top-loading-bar'; // Import the loading bar
+import LoadingBar from 'react-top-loading-bar';
+import './App.css'; // Make sure the CSS file is imported
 
 function App() {
   const [videoURL, setVideoURL] = useState('');
   const [summary, setSummary] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const loadingBarRef = useRef(null); // Create a reference for the loading bar
+  const loadingBarRef = useRef(null);
 
   const handleSummarize = async () => {
     if (!videoURL) return;
@@ -16,7 +17,7 @@ function App() {
     setLoading(true);
     setError(null);
     setSummary('');
-    loadingBarRef.current.continuousStart(); // Start the loading bar
+    loadingBarRef.current.continuousStart();
 
     try {
       const response = await axios.post('https://yt-summarizer-nhhe.onrender.com/summarize', { url: videoURL });
@@ -30,37 +31,42 @@ function App() {
       }
     }
     
-    loadingBarRef.current.complete(); // Complete the loading bar
+    loadingBarRef.current.complete();
     setLoading(false);
   };
 
   return (
-    <div style={{ padding: '50px' }}>
-      {/* Loading bar component */}
+    <div className="container">
+      {/* Loading bar */}
       <LoadingBar color="#f11946" ref={loadingBarRef} />
 
       <h1>YouTube Lecture Summariser</h1>
-      <input
-        type="text"
-        placeholder="Enter YouTube video URL"
-        value={videoURL}
-        onChange={(e) => setVideoURL(e.target.value)}
-        style={{ width: '60%', padding: '10px', fontSize: '16px' }}
-      />
-      <button onClick={handleSummarize} disabled={loading} style={{ padding: '10px', marginLeft: '10px' }}>
-        {loading ? 'Summarizing...' : 'Summarize'}
-      </button>
       
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Enter YouTube video URL"
+          value={videoURL}
+          onChange={(e) => setVideoURL(e.target.value)}
+        />
+        <button onClick={handleSummarize} disabled={loading}>
+          {loading ? 'Summarizing...' : 'Summarize'}
+        </button>
+      </div>
+
       {error && (
-        <div style={{ marginTop: '30px', color: 'red' }}>
+        <div className="error-message">
           <h3>Error:</h3>
           <p>{error}</p>
         </div>
       )}
+
       {summary && (
-        <div style={{ marginTop: '30px' }}>
-          <h2>Summary:</h2>
-          <p>{he.decode(summary)}</p>
+        <div className="summary-container">
+          <h2 className="summary-title">Summary:</h2>
+          <div className="summary-bubble">
+            <p>{he.decode(summary)}</p>
+          </div>
         </div>
       )}
     </div>
