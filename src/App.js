@@ -1,5 +1,3 @@
-// src/App.js
-
 import React, { useState } from "react";
 import axios from "axios";
 import he from "he";
@@ -20,7 +18,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "https://yt-summarizer-backend-production.up.railway.app:8080/summarize",
+        "https://yt-summarizer-backend-production.up.railway.app/summarize", // Removed port 8080
         {
           url: videoURL,
         }
