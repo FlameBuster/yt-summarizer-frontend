@@ -18,7 +18,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "https://yt-summarizer-backend-production.up.railway.app/summarize", // Removed port 8080
+        "https://yt-summarizer-nhhe.onrender.com/summarize", // Removed port 8080
         {
           url: videoURL,
         }
