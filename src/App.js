@@ -1,15 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import he from "he";
-import "./App.css";
-import LoadingBar from "react-top-loading-bar";
+import "./App.css"; // Import the App.css file
 
 function App() {
   const [videoURL, setVideoURL] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const loadingBarRef = useRef(null);
 
   const handleSummarize = async () => {
     if (!videoURL) return;
@@ -17,12 +15,13 @@ function App() {
     setLoading(true);
     setError(null);
     setSummary("");
-    loadingBarRef.current.continuousStart();
 
     try {
       const response = await axios.post(
-        "https://yt-summarizer-nhhe.onrender.com/summarize",
-        { url: videoURL }
+        "https://yt-summarizer-nhhe.onrender.com/summarize", // Removed port 8080
+        {
+          url: videoURL,
+        }
       );
       setSummary(response.data.summary);
     } catch (error) {
@@ -33,18 +32,12 @@ function App() {
         setError("An error occurred while summarizing the video.");
       }
     }
-
-    loadingBarRef.current.complete();
     setLoading(false);
   };
 
   return (
     <div className="container">
-      {/* Loading bar */}
-      <LoadingBar color="#f11946" ref={loadingBarRef} />
-
       <h1>YouTube Lecture Summariser</h1>
-
       <div className="input-container">
         <input
           type="text"
@@ -56,14 +49,12 @@ function App() {
           {loading ? "Summarizing..." : "Summarize"}
         </button>
       </div>
-
       {error && (
         <div className="error-message">
           <h3>Error:</h3>
           <p>{error}</p>
         </div>
       )}
-
       {summary && (
         <div className="summary-container">
           <h2 className="summary-title">Summary:</h2>
